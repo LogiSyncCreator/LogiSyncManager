@@ -18,6 +18,7 @@
 		ED237A082C3FB07A009A9F8A /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A072C3FB07A009A9F8A /* Card.swift */; };
 		ED237A0A2C3FB10A009A9F8A /* UserThumbnalil.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A092C3FB10A009A9F8A /* UserThumbnalil.swift */; };
 		ED237A0C2C3FB310009A9F8A /* MatchingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A0B2C3FB310009A9F8A /* MatchingsView.swift */; };
+		ED237A0E2C3FBA31009A9F8A /* MatchingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A0D2C3FBA31009A9F8A /* MatchingSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		ED237A072C3FB07A009A9F8A /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		ED237A092C3FB10A009A9F8A /* UserThumbnalil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserThumbnalil.swift; sourceTree = "<group>"; };
 		ED237A0B2C3FB310009A9F8A /* MatchingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingsView.swift; sourceTree = "<group>"; };
+		ED237A0D2C3FBA31009A9F8A /* MatchingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 			children = (
 				ED237A062C3FB060009A9F8A /* UI */,
 				ED237A0B2C3FB310009A9F8A /* MatchingsView.swift */,
+				ED237A0D2C3FBA31009A9F8A /* MatchingSheet.swift */,
 			);
 			path = Matchings;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				ED2379F12C3CE15E009A9F8A /* Item.swift in Sources */,
 				ED237A012C3FA52C009A9F8A /* NavigationButton.swift in Sources */,
 				ED237A0A2C3FB10A009A9F8A /* UserThumbnalil.swift in Sources */,
+				ED237A0E2C3FBA31009A9F8A /* MatchingSheet.swift in Sources */,
 				ED2379ED2C3CE15E009A9F8A /* LogiSyncManagerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
