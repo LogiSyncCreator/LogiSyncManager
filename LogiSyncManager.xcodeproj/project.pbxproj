@@ -13,6 +13,11 @@
 		ED2379F32C3CE15F009A9F8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED2379F22C3CE15F009A9F8A /* Assets.xcassets */; };
 		ED2379F62C3CE15F009A9F8A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED2379F52C3CE15F009A9F8A /* Preview Assets.xcassets */; };
 		ED2379FE2C3CE1C4009A9F8A /* SideBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2379FD2C3CE1C4009A9F8A /* SideBarView.swift */; };
+		ED237A012C3FA52C009A9F8A /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A002C3FA52C009A9F8A /* NavigationButton.swift */; };
+		ED237A042C3FAAD4009A9F8A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A032C3FAAD4009A9F8A /* LoginView.swift */; };
+		ED237A082C3FB07A009A9F8A /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A072C3FB07A009A9F8A /* Card.swift */; };
+		ED237A0A2C3FB10A009A9F8A /* UserThumbnalil.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A092C3FB10A009A9F8A /* UserThumbnalil.swift */; };
+		ED237A0C2C3FB310009A9F8A /* MatchingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A0B2C3FB310009A9F8A /* MatchingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +28,11 @@
 		ED2379F22C3CE15F009A9F8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED2379F52C3CE15F009A9F8A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ED2379FD2C3CE1C4009A9F8A /* SideBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarView.swift; sourceTree = "<group>"; };
+		ED237A002C3FA52C009A9F8A /* NavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
+		ED237A032C3FAAD4009A9F8A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		ED237A072C3FB07A009A9F8A /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		ED237A092C3FB10A009A9F8A /* UserThumbnalil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserThumbnalil.swift; sourceTree = "<group>"; };
+		ED237A0B2C3FB310009A9F8A /* MatchingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +65,8 @@
 		ED2379EB2C3CE15E009A9F8A /* LogiSyncManager */ = {
 			isa = PBXGroup;
 			children = (
+				ED237A052C3FB059009A9F8A /* Matchings */,
+				ED237A022C3FAAC3009A9F8A /* Login */,
 				ED2379FC2C3CE1B4009A9F8A /* SideBar */,
 				ED2379EC2C3CE15E009A9F8A /* LogiSyncManagerApp.swift */,
 				ED2379EE2C3CE15E009A9F8A /* ContentView.swift */,
@@ -76,9 +88,44 @@
 		ED2379FC2C3CE1B4009A9F8A /* SideBar */ = {
 			isa = PBXGroup;
 			children = (
+				ED2379FF2C3FA519009A9F8A /* UI */,
 				ED2379FD2C3CE1C4009A9F8A /* SideBarView.swift */,
 			);
 			path = SideBar;
+			sourceTree = "<group>";
+		};
+		ED2379FF2C3FA519009A9F8A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				ED237A002C3FA52C009A9F8A /* NavigationButton.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		ED237A022C3FAAC3009A9F8A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				ED237A032C3FAAD4009A9F8A /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		ED237A052C3FB059009A9F8A /* Matchings */ = {
+			isa = PBXGroup;
+			children = (
+				ED237A062C3FB060009A9F8A /* UI */,
+				ED237A0B2C3FB310009A9F8A /* MatchingsView.swift */,
+			);
+			path = Matchings;
+			sourceTree = "<group>";
+		};
+		ED237A062C3FB060009A9F8A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				ED237A072C3FB07A009A9F8A /* Card.swift */,
+				ED237A092C3FB10A009A9F8A /* UserThumbnalil.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,9 +198,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED237A042C3FAAD4009A9F8A /* LoginView.swift in Sources */,
+				ED237A0C2C3FB310009A9F8A /* MatchingsView.swift in Sources */,
 				ED2379EF2C3CE15E009A9F8A /* ContentView.swift in Sources */,
+				ED237A082C3FB07A009A9F8A /* Card.swift in Sources */,
 				ED2379FE2C3CE1C4009A9F8A /* SideBarView.swift in Sources */,
 				ED2379F12C3CE15E009A9F8A /* Item.swift in Sources */,
+				ED237A012C3FA52C009A9F8A /* NavigationButton.swift in Sources */,
+				ED237A0A2C3FB10A009A9F8A /* UserThumbnalil.swift in Sources */,
 				ED2379ED2C3CE15E009A9F8A /* LogiSyncManagerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
