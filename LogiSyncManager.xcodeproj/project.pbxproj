@@ -12,6 +12,7 @@
 		ED2379F12C3CE15E009A9F8A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2379F02C3CE15E009A9F8A /* Item.swift */; };
 		ED2379F32C3CE15F009A9F8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED2379F22C3CE15F009A9F8A /* Assets.xcassets */; };
 		ED2379F62C3CE15F009A9F8A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED2379F52C3CE15F009A9F8A /* Preview Assets.xcassets */; };
+		ED2379FE2C3CE1C4009A9F8A /* SideBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2379FD2C3CE1C4009A9F8A /* SideBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		ED2379F02C3CE15E009A9F8A /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		ED2379F22C3CE15F009A9F8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED2379F52C3CE15F009A9F8A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ED2379FD2C3CE1C4009A9F8A /* SideBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 		ED2379EB2C3CE15E009A9F8A /* LogiSyncManager */ = {
 			isa = PBXGroup;
 			children = (
+				ED2379FC2C3CE1B4009A9F8A /* SideBar */,
 				ED2379EC2C3CE15E009A9F8A /* LogiSyncManagerApp.swift */,
 				ED2379EE2C3CE15E009A9F8A /* ContentView.swift */,
 				ED2379F02C3CE15E009A9F8A /* Item.swift */,
@@ -68,6 +71,14 @@
 				ED2379F52C3CE15F009A9F8A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ED2379FC2C3CE1B4009A9F8A /* SideBar */ = {
+			isa = PBXGroup;
+			children = (
+				ED2379FD2C3CE1C4009A9F8A /* SideBarView.swift */,
+			);
+			path = SideBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED2379EF2C3CE15E009A9F8A /* ContentView.swift in Sources */,
+				ED2379FE2C3CE1C4009A9F8A /* SideBarView.swift in Sources */,
 				ED2379F12C3CE15E009A9F8A /* Item.swift in Sources */,
 				ED2379ED2C3CE15E009A9F8A /* LogiSyncManagerApp.swift in Sources */,
 			);
@@ -291,9 +303,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nanaSoft.LogiSyncManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -320,9 +336,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nanaSoft.LogiSyncManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
