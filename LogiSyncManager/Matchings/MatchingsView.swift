@@ -9,7 +9,11 @@ import SwiftUI
 
 struct MatchingsView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        GeometryReader {geo in
+            VStack{
+                Card(userName: "荷主 太郎", company: "株式会社にぬし", role: "荷主", width: 100, geo: geo).padding()
+            }
+        }
     }
 }
 
