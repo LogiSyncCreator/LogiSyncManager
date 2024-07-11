@@ -11,10 +11,44 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+    
+    @State var index: Int = 0
+    
+    @State var isViewSideBar: Bool = false
 
     var body: some View {
         ZStack{
-            SideBarView()
+            
+            switch(index){
+            case 0:
+                LoginView(index: $index).onAppear(){
+                    isViewSideBar = false
+                }
+            case 1:
+                MatchingsView().padding(.top).onAppear(){
+                    isViewSideBar = true
+                }
+            case 2:
+                Text("2").onAppear(){
+                    isViewSideBar = true
+                }
+            case 3:
+                Text("3").onAppear(){
+                    isViewSideBar = true
+                }
+            case 4:
+                LoginView(index: $index).onAppear(){
+                    isViewSideBar = false
+                }
+            default:
+                LoginView(index: $index).onAppear(){
+                    isViewSideBar = false
+                }
+            }
+            
+            if isViewSideBar {
+                SideBarView(index: $index)
+            }
         }
     }
 
