@@ -9,10 +9,14 @@ import SwiftUI
 
 struct LoginView: View {
     
+    @EnvironmentObject var environVM: EnvironViewModel
+    
     @Binding var index: Int
     
     @State var userId: String = ""
     @State var userPass: String = ""
+    
+    @State var isErr: Bool = false
     
     var body: some View {
         Rectangle().ignoresSafeArea().overlay {
@@ -33,20 +37,42 @@ struct LoginView: View {
                 Button(action: {
                     // ログイン処理
                     
-                    withAnimation {
-                        index = 1
+                    Task{
+                        do{
+                            try await environVM.userLogin(userId: userId, pass: userPass)
+                            
+                            if !environVM.model.account.user.id.isEmpty {
+                                // ログイン成功
+                                isErr = false
+                                withAnimation {
+                                    index = 1
+                                }
+                            } else {
+                                isErr = true
+                            }
+                            
+                            
+                        } catch {
+                            isErr = true
+                            return
+                        }
                     }
+                    
                     
                     
                 }, label: {
                     Text("ログイン").foregroundStyle(.white).font(.title).padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)).bold()
                 }).background(.blue, in: RoundedRectangle(cornerRadius: 5)).padding(.leading)
             }).padding()
+            HStack{
+                Text(isErr ? "ログインに失敗しました" : "").foregroundStyle(.red)
+                Spacer()
+            }.frame(width: 700)
         }.padding()
     }.foregroundStyle(.background)
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView().environmentObject(EnvironViewModel())
 }
