@@ -6,3 +6,62 @@
 //
 
 import Foundation
+
+struct EnvironModel {
+    
+    var account: MyUser = MyUser()
+    
+    let api = APIRequest()
+    
+    /// ログインしてステータスをセットする
+    /// - ログイン処理:
+    ///   - id: user id
+    ///   - pass: user password
+    func getUserInfo(id: String, pass: String) async throws -> UserInformation {
+        do {
+            let user = try await api.userLogin(id: id, pass: pass)
+            let userInfo = try JSONDecoder().decode(UserInformation.self, from: user)
+            return userInfo
+        } catch {
+            print("Invalid user id or password.")
+            return UserInformation()
+        }
+    }
+    
+    /// ステータスを取得する
+    func getUserStatus() async throws -> UserStatus {
+        do {
+            let status = try await api.getStatus(id: account.user.userId)
+            let userStatus = try JSONDecoder().decode(UserStatus.self, from: status)
+            return userStatus
+        } catch {
+            print("Invalid user id.")
+            return UserStatus()
+        }
+    }
+}
+
+struct MyUser {
+    var user: UserInformation = UserInformation()
+    var status: UserStatus = UserStatus()
+}
+
+struct UserInformation: Codable {
+    var id: String = ""
+    var userId: String = ""
+    var profile: String = ""
+    var name: String = ""
+    var company: String = ""
+    var role: String = ""
+    var phone: String = ""
+}
+
+struct UserStatus: Codable {
+    var id: String = ""
+    var userId: String = ""
+    var statusId: String = ""
+    var name: String = ""
+    var color: String = ""
+    var icon: String = ""
+    var delete: Bool = false
+}
