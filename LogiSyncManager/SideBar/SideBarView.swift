@@ -75,6 +75,12 @@ struct SideBarView: View {
                 
             }.onAppear(){
                 xOffset = 0 - (geometry.size.width + 150) * 0.2
+            }.onChange(of: index) {
+                print("hi")
+                withAnimation{
+                    xOffset = 0 - (geometry.size.width + 150) * 0.2
+                    isOpen.toggle()
+                }
             }
         })
     }

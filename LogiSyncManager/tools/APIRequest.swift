@@ -23,6 +23,10 @@ final class APIRequest {
         return try await APIRequest(param: id, endPoint: "/status/nowstatus")
     }
     
+    func setMatchings(postData: SendMatchingInformation) async throws {
+        return try await APIRequest(postData: postData, endPoint: "matching")
+    }
+    
     /// Description
     /// - Parameters:
     ///   - param: http://******/{param}
@@ -52,7 +56,7 @@ final class APIRequest {
     ///   - postData: ["key": value, ...]
     ///   - endPoint: http://{endpoint}/{param}
     ///   - method: POST or DELETE
-    func APIRequest(postData: [String: Any], endPoint: String, method: String = "POST") async throws {
+    func APIRequest<T: Encodable>(postData: T, endPoint: String, method: String = "POST") async throws {
         guard let url = URL(string: "\(httpd)://\(host):\(port)/\(endPoint)") else {
             throw URLError(.badURL)
         }
@@ -61,8 +65,10 @@ final class APIRequest {
         request.httpMethod = method
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        // POSTデータを設定
-        request.httpBody = try JSONSerialization.data(withJSONObject: postData, options: [])
+        // JSONEncoderを使用してデータをエンコード
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        request.httpBody = try encoder.encode(postData)
         
         // URLSessionを使用してリクエストを送信
         let (_, response) = try await URLSession.shared.data(for: request)

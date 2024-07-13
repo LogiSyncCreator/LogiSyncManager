@@ -13,6 +13,7 @@ class EnvironViewModel: ObservableObject {
     @Published var model = EnvironModel()
     
     @Published var reView: Bool = false
+    @Published var matchingsAlert: Bool = false
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -20,7 +21,7 @@ class EnvironViewModel: ObservableObject {
     private let loginCalled = PassthroughSubject<Void, Never>()
     
     // 送信イベント
-    public let sendMatching = PassthroughSubject<Void, Never>()
+    public let sendMatching = PassthroughSubject<SendMatchingInformation, Never>()
     public let sendStatus = PassthroughSubject<Void, Never>()
     public let sendUser = PassthroughSubject<Void, Never>()
     
@@ -28,6 +29,9 @@ class EnvironViewModel: ObservableObject {
     public let receivedMatching = PassthroughSubject<Void, Never>()
     public let receivedStatus = PassthroughSubject<Void, Never>()
     public let receivedUser = PassthroughSubject<Void, Never>()
+    
+    // ロードフラグ
+    @Published var isInsertMatchings: Bool = false
     
     var api = APIRequest()
     
@@ -45,6 +49,30 @@ class EnvironViewModel: ObservableObject {
             }
             
             print("login success!")
+            
+        }.store(in: &cancellables)
+        
+        sendMatching.sink { [weak self] sendMatchingInformation in
+            guard let self = self else {
+                return
+            }
+            
+            self.isInsertMatchings = true
+            
+            Task {
+                try await self.model.insertMatchings(postData: sendMatchingInformation)
+                
+                await MainActor.run {
+                    self.isInsertMatchings = false
+                    self.matchingsAlert = true
+                    self.reView.toggle()
+                    self.receivedMatching.send()
+                }
+                
+            }
+        }.store(in: &cancellables)
+        
+        receivedMatching.sink { [weak self] () in
             
         }.store(in: &cancellables)
     }

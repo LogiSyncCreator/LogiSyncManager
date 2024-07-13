@@ -40,6 +40,15 @@ struct EnvironModel {
             return UserStatus()
         }
     }
+    
+    func insertMatchings(postData: SendMatchingInformation) async throws {
+        do {
+            
+            try await api.setMatchings(postData: postData)
+        } catch {
+            print("post data is invalid.")
+        }
+    }
 }
 
 struct MyUser {
@@ -80,6 +89,15 @@ struct MatchingInformation: Codable {
     var driver: String = ""
     var address: String = ""
     var start: String = ""
+}
+
+struct SendMatchingInformation: Codable {
+    var manager: String = ""
+    var shipper: String = ""
+    var driver: String = ""
+    var address: String = ""
+    var start: Date = Date()
+    var delete: Bool = false
 }
 
 struct MatchingUser: Codable {
