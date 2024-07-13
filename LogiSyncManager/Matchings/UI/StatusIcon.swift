@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct StatusIcon: View {
+    
+    var width: CGFloat
+    var symbole: String
+    var symboleColor: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+        Circle().frame(width: width).foregroundStyle(Color(.systemBackground))
+        Image(systemName: symbole.isEmpty ? "xmark.circle" : symbole).font(.system(size: width - 5)).foregroundColor(Color(symboleColor.isEmpty ? "gray" : symboleColor)).onChange(of: symboleColor) {
+            print(symbole)
+        }
     }
-}
-
-#Preview {
-    StatusIcon()
+    }
 }

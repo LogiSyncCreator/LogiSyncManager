@@ -8,11 +8,36 @@
 import SwiftUI
 
 struct ProfileUI: View {
+    var profile: String
+    @State private var isOpen: Bool = true
+    @State private var textHeight: CGFloat = 0
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading) {
+            Text(isOpen ? profile : String(profile.prefix(10)) + "...")
+                .lineLimit(nil).padding(.horizontal)
+            
+            HStack{
+                Spacer()
+                if profile.count > 10 {
+                    Button(action: {
+                        withAnimation {
+                            isOpen.toggle()
+                        }
+                    }) {
+                        Text(isOpen ? "折りたたむ" : "続きを読む")
+                            .foregroundColor(.blue)
+                    }.onAppear(){
+                        isOpen.toggle()
+                    }
+                }
+            }.padding(.trailing)
+
+            Divider()
+        }
     }
 }
 
 #Preview {
-    ProfileUI()
+    ProfileUI(profile: "testtesttes\ntesttestt")
 }
