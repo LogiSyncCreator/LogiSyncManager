@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    @EnvironmentObject var envrironVM: EnvironViewModel
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
     
@@ -29,7 +30,7 @@ struct ContentView: View {
                     isViewSideBar = true
                 }
             case 2:
-                Text("2").onAppear(){
+                RegistView().onAppear(){
                     isViewSideBar = true
                 }
             case 3:
