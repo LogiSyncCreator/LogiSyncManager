@@ -19,6 +19,13 @@
 		ED237A0A2C3FB10A009A9F8A /* UserThumbnalil.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A092C3FB10A009A9F8A /* UserThumbnalil.swift */; };
 		ED237A0C2C3FB310009A9F8A /* MatchingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A0B2C3FB310009A9F8A /* MatchingsView.swift */; };
 		ED237A0E2C3FBA31009A9F8A /* MatchingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A0D2C3FBA31009A9F8A /* MatchingSheet.swift */; };
+		ED237A102C3FBC2B009A9F8A /* CreateCustomTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A0F2C3FBC2B009A9F8A /* CreateCustomTagView.swift */; };
+		ED237A122C3FC04F009A9F8A /* StatusIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A112C3FC04F009A9F8A /* StatusIcon.swift */; };
+		ED237A152C3FD032009A9F8A /* RegistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A142C3FD032009A9F8A /* RegistView.swift */; };
+		ED237A172C3FDBD8009A9F8A /* ProfileUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A162C3FDBD8009A9F8A /* ProfileUI.swift */; };
+		ED237A192C40C1E8009A9F8A /* EnvironViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A182C40C1E7009A9F8A /* EnvironViewModel.swift */; };
+		ED237A1B2C40C1F5009A9F8A /* EnvironModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A1A2C40C1F5009A9F8A /* EnvironModel.swift */; };
+		ED237A1E2C40C210009A9F8A /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A1D2C40C210009A9F8A /* APIRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +42,13 @@
 		ED237A092C3FB10A009A9F8A /* UserThumbnalil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserThumbnalil.swift; sourceTree = "<group>"; };
 		ED237A0B2C3FB310009A9F8A /* MatchingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingsView.swift; sourceTree = "<group>"; };
 		ED237A0D2C3FBA31009A9F8A /* MatchingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingSheet.swift; sourceTree = "<group>"; };
+		ED237A0F2C3FBC2B009A9F8A /* CreateCustomTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCustomTagView.swift; sourceTree = "<group>"; };
+		ED237A112C3FC04F009A9F8A /* StatusIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusIcon.swift; sourceTree = "<group>"; };
+		ED237A142C3FD032009A9F8A /* RegistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistView.swift; sourceTree = "<group>"; };
+		ED237A162C3FDBD8009A9F8A /* ProfileUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUI.swift; sourceTree = "<group>"; };
+		ED237A182C40C1E7009A9F8A /* EnvironViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironViewModel.swift; sourceTree = "<group>"; };
+		ED237A1A2C40C1F5009A9F8A /* EnvironModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironModel.swift; sourceTree = "<group>"; };
+		ED237A1D2C40C210009A9F8A /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +81,8 @@
 		ED2379EB2C3CE15E009A9F8A /* LogiSyncManager */ = {
 			isa = PBXGroup;
 			children = (
+				ED237A1C2C40C1FC009A9F8A /* tools */,
+				ED237A132C3FD025009A9F8A /* Regist */,
 				ED237A052C3FB059009A9F8A /* Matchings */,
 				ED237A022C3FAAC3009A9F8A /* Login */,
 				ED2379FC2C3CE1B4009A9F8A /* SideBar */,
@@ -74,6 +90,8 @@
 				ED2379EE2C3CE15E009A9F8A /* ContentView.swift */,
 				ED2379F02C3CE15E009A9F8A /* Item.swift */,
 				ED2379F22C3CE15F009A9F8A /* Assets.xcassets */,
+				ED237A1A2C40C1F5009A9F8A /* EnvironModel.swift */,
+				ED237A182C40C1E7009A9F8A /* EnvironViewModel.swift */,
 				ED2379F42C3CE15F009A9F8A /* Preview Content */,
 			);
 			path = LogiSyncManager;
@@ -127,8 +145,27 @@
 			children = (
 				ED237A072C3FB07A009A9F8A /* Card.swift */,
 				ED237A092C3FB10A009A9F8A /* UserThumbnalil.swift */,
+				ED237A0F2C3FBC2B009A9F8A /* CreateCustomTagView.swift */,
+				ED237A112C3FC04F009A9F8A /* StatusIcon.swift */,
+				ED237A162C3FDBD8009A9F8A /* ProfileUI.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		ED237A132C3FD025009A9F8A /* Regist */ = {
+			isa = PBXGroup;
+			children = (
+				ED237A142C3FD032009A9F8A /* RegistView.swift */,
+			);
+			path = Regist;
+			sourceTree = "<group>";
+		};
+		ED237A1C2C40C1FC009A9F8A /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				ED237A1D2C40C210009A9F8A /* APIRequest.swift */,
+			);
+			path = tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,16 +238,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED237A152C3FD032009A9F8A /* RegistView.swift in Sources */,
+				ED237A192C40C1E8009A9F8A /* EnvironViewModel.swift in Sources */,
+				ED237A172C3FDBD8009A9F8A /* ProfileUI.swift in Sources */,
 				ED237A042C3FAAD4009A9F8A /* LoginView.swift in Sources */,
 				ED237A0C2C3FB310009A9F8A /* MatchingsView.swift in Sources */,
 				ED2379EF2C3CE15E009A9F8A /* ContentView.swift in Sources */,
 				ED237A082C3FB07A009A9F8A /* Card.swift in Sources */,
+				ED237A122C3FC04F009A9F8A /* StatusIcon.swift in Sources */,
 				ED2379FE2C3CE1C4009A9F8A /* SideBarView.swift in Sources */,
 				ED2379F12C3CE15E009A9F8A /* Item.swift in Sources */,
 				ED237A012C3FA52C009A9F8A /* NavigationButton.swift in Sources */,
 				ED237A0A2C3FB10A009A9F8A /* UserThumbnalil.swift in Sources */,
 				ED237A0E2C3FBA31009A9F8A /* MatchingSheet.swift in Sources */,
 				ED2379ED2C3CE15E009A9F8A /* LogiSyncManagerApp.swift in Sources */,
+				ED237A1E2C40C210009A9F8A /* APIRequest.swift in Sources */,
+				ED237A102C3FBC2B009A9F8A /* CreateCustomTagView.swift in Sources */,
+				ED237A1B2C40C1F5009A9F8A /* EnvironModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
