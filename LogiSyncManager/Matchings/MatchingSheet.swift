@@ -93,5 +93,5 @@ struct StatusLabel: View {
 }
 
 #Preview {
-    MatchingsView()
+    ContentView().environmentObject(EnvironViewModel())
 }

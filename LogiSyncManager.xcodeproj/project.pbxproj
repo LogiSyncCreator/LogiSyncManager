@@ -205,11 +205,11 @@
 			};
 			buildConfigurationList = ED2379E42C3CE15E009A9F8A /* Build configuration list for PBXProject "LogiSyncManager" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ja;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				ja,
 			);
 			mainGroup = ED2379E02C3CE15E009A9F8A;
 			productRefGroup = ED2379EA2C3CE15E009A9F8A /* Products */;
