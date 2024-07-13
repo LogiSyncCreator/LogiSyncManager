@@ -17,13 +17,13 @@ struct SideBarView: View {
         GeometryReader(content: { geometry in
             ZStack{
                 Group{
-                    Rectangle().frame(width: geometry.size.width * 0.2).ignoresSafeArea().foregroundStyle(Material.ultraThin).overlay {
+                    Rectangle().frame(width: (geometry.size.width + 150) * 0.2).ignoresSafeArea().foregroundStyle(Material.ultraThin).overlay {
                         VStack{
                             HStack{
                                 Button(action: {
                                     if !isOpen {
                                         withAnimation {
-                                            xOffset = 0 - geometry.size.width * 0.2
+                                            xOffset = 0 - (geometry.size.width + 150) * 0.2
                                             isOpen.toggle()
                                         }
                                     } else {
@@ -55,7 +55,7 @@ struct SideBarView: View {
 //                }
                 
                 if isOpen {
-                    Rectangle().frame(width: geometry.size.width * 0.2).ignoresSafeArea().foregroundStyle(.clear).overlay {
+                    Rectangle().frame(width: (geometry.size.width + 150) * 0.2).ignoresSafeArea().foregroundStyle(.clear).overlay {
                         VStack(alignment: .leading){
                             Button(action: {
                                 if isOpen {
@@ -74,7 +74,7 @@ struct SideBarView: View {
                 }
                 
             }.onAppear(){
-                xOffset = 0 - geometry.size.width * 0.2
+                xOffset = 0 - (geometry.size.width + 150) * 0.2
             }
         })
     }
@@ -82,5 +82,5 @@ struct SideBarView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView().environmentObject(EnvironViewModel())
 }
