@@ -10,7 +10,7 @@ import Foundation
 struct EnvironModel {
     
     var account: MyUser = MyUser()
-    var matchings: [MyMatching] = []
+    var matchings: [ManagedMatching] = []
     
     let api = APIRequest()
     
@@ -49,6 +49,19 @@ struct EnvironModel {
             print("post data is invalid.")
         }
     }
+    
+    func retriveMatchngGroup() async throws -> [ManagedMatching] {
+        do {
+            let postData: [String: Any] = ["manager": self.account.user.userId]
+            
+            let matchingData = try await api.getMatchingGroup(postData: postData)
+            let matchings = try JSONDecoder().decode([ManagedMatching].self, from: matchingData)
+            return matchings
+        } catch {
+            print("Not Found matching list.")
+            return []
+        }
+    }
 }
 
 struct MyUser {
@@ -64,9 +77,11 @@ struct UserInformation: Codable {
     var company: String = ""
     var role: String = ""
     var phone: String = ""
+    var delete: Bool = false
 }
 
 struct UserStatus: Codable {
+    var index: Int = 0
     var id: String = ""
     var userId: String = ""
     var statusId: String = ""
@@ -74,6 +89,17 @@ struct UserStatus: Codable {
     var color: String = ""
     var icon: String = ""
     var delete: Bool = false
+}
+
+struct CustomStatus: Codable {
+    var id: String = ""
+    var manager: String = ""
+    var shipper: String = ""
+    var name: String = ""
+    var delete: Bool = false
+    var color: String = ""
+    var icon: String = ""
+    var index: Int = 0
 }
 
 struct MyMatching: Codable {
@@ -89,6 +115,7 @@ struct MatchingInformation: Codable {
     var driver: String = ""
     var address: String = ""
     var start: String = ""
+    var delete: Bool = false
 }
 
 struct SendMatchingInformation: Codable {
@@ -104,4 +131,22 @@ struct MatchingUser: Codable {
     var manager: UserInformation
     var shipper: UserInformation
     var driver: UserInformation
+}
+
+struct ManagedMatching:Hashable, Codable {
+    
+    // Hashableプロトコルに準拠するために必要な関数
+    static func == (lhs: ManagedMatching, rhs: ManagedMatching) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    var id: String = ""
+    var index: Int = 0
+    var matching: MatchingInformation = MatchingInformation()
+    var user: MatchingUser = MatchingUser(manager: UserInformation(), shipper: UserInformation(), driver: UserInformation())
+    var status: [CustomStatus] = []
 }

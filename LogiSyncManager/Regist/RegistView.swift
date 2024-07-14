@@ -59,6 +59,7 @@ struct RegistView: View {
                     .alert("完了", isPresented: $environVM.matchingsAlert) {
                         Button("OK") {
                             // 処理
+                            isAlert = false
                         }
                     } message: {
                         Text("マッチングの作成が完了しました")

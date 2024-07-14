@@ -45,6 +45,7 @@ class EnvironViewModel: ObservableObject {
                 try await self.setUserStatus()
                 await MainActor.run {
                     self.reView.toggle()
+                    self.receivedMatching.send()
                 }
             }
             
@@ -73,6 +74,17 @@ class EnvironViewModel: ObservableObject {
         }.store(in: &cancellables)
         
         receivedMatching.sink { [weak self] () in
+            guard let self = self else {
+                return
+            }
+            
+            Task {
+                try await self.setMatchings()
+                
+                await MainActor.run {
+                    self.reView.toggle()
+                }
+            }
             
         }.store(in: &cancellables)
     }
@@ -95,6 +107,13 @@ class EnvironViewModel: ObservableObject {
         let status = try await self.model.getUserStatus()
         await MainActor.run {
             self.model.account.status = status
+        }
+    }
+    
+    func setMatchings() async throws {
+        let matchings = try await self.model.retriveMatchngGroup()
+        await MainActor.run {
+            self.model.matchings = matchings
         }
     }
 }

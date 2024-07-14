@@ -26,6 +26,7 @@
 		ED237A192C40C1E8009A9F8A /* EnvironViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A182C40C1E7009A9F8A /* EnvironViewModel.swift */; };
 		ED237A1B2C40C1F5009A9F8A /* EnvironModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A1A2C40C1F5009A9F8A /* EnvironModel.swift */; };
 		ED237A1E2C40C210009A9F8A /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A1D2C40C210009A9F8A /* APIRequest.swift */; };
+		ED237A402C4372A3009A9F8A /* MatchingPagenation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED237A3F2C4372A2009A9F8A /* MatchingPagenation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		ED237A182C40C1E7009A9F8A /* EnvironViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironViewModel.swift; sourceTree = "<group>"; };
 		ED237A1A2C40C1F5009A9F8A /* EnvironModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironModel.swift; sourceTree = "<group>"; };
 		ED237A1D2C40C210009A9F8A /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		ED237A3F2C4372A2009A9F8A /* MatchingPagenation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingPagenation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				ED237A062C3FB060009A9F8A /* UI */,
 				ED237A0B2C3FB310009A9F8A /* MatchingsView.swift */,
 				ED237A0D2C3FBA31009A9F8A /* MatchingSheet.swift */,
+				ED237A3F2C4372A2009A9F8A /* MatchingPagenation.swift */,
 			);
 			path = Matchings;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				ED237A122C3FC04F009A9F8A /* StatusIcon.swift in Sources */,
 				ED2379FE2C3CE1C4009A9F8A /* SideBarView.swift in Sources */,
 				ED2379F12C3CE15E009A9F8A /* Item.swift in Sources */,
+				ED237A402C4372A3009A9F8A /* MatchingPagenation.swift in Sources */,
 				ED237A012C3FA52C009A9F8A /* NavigationButton.swift in Sources */,
 				ED237A0A2C3FB10A009A9F8A /* UserThumbnalil.swift in Sources */,
 				ED237A0E2C3FBA31009A9F8A /* MatchingSheet.swift in Sources */,

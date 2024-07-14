@@ -27,6 +27,10 @@ final class APIRequest {
         return try await APIRequest(postData: postData, endPoint: "matching")
     }
     
+    func getMatchingGroup(postData: [String: Any]) async throws -> Data {
+        return try await APIRequest(postData: postData, endPoint: "matching/managedgroup")
+    }
+    
     /// Description
     /// - Parameters:
     ///   - param: http://******/{param}
