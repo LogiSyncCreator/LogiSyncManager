@@ -31,6 +31,10 @@ final class APIRequest {
         return try await APIRequest(postData: postData, endPoint: "matching/managedgroup")
     }
     
+    func setCustomStatus(postData: [String: Any]) async throws -> Data {
+        return try await APIRequest(postData: postData, endPoint: "status")
+    }
+    
     /// Description
     /// - Parameters:
     ///   - param: http://******/{param}

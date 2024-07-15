@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MatchingSheet: View {
-    
+    @EnvironmentObject var environVM: EnvironViewModel
     @Environment(\.colorScheme) var colorScheme
     
     @State var matching: ManagedMatching
@@ -46,7 +46,7 @@ struct MatchingSheet: View {
                     }.padding().frame(height: 200)
                     Divider().padding(.horizontal)
                     
-                    CreateCustomTagView().padding()
+                CreateCustomTagView(shipperId: matching.user.shipper.userId, status: matching.status).padding()
                 
                 Text("ステータス一覧").padding(.horizontal)
                 
@@ -56,7 +56,7 @@ struct MatchingSheet: View {
                     StatusLabel(width: 30, symbole: "xmark.circle", color: "gray", label: "オフライン")
                     //                    StatusLabel(width: 30, symbole: "house.circle", color: "yellow", label: "待機中")
                     //                    StatusLabel(width: 30, symbole: "car.circle", color: "red", label: "運転中")
-                    ForEach(matching.status, id: \.id) { data in
+                    ForEach(environVM.model.matchings[matching.index].status, id: \.self) { data in
                         StatusLabel(width: 30, symbole: data.icon, color: data.color, label: data.name)
                     }
                 }

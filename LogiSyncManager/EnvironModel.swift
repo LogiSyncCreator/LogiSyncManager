@@ -62,6 +62,28 @@ struct EnvironModel {
             return []
         }
     }
+    
+    func insertCustomStatus(icon: String, shipper: String, color: String, name: String, index: Int) async throws -> Bool {
+        do {
+            let postData: [String: Any] = [
+                "icon": icon,
+                "shipper": shipper,
+                "manager": self.account.user.userId,
+                "color": color,
+                "delete": false,
+                "name": name,
+                "index": index,
+            ]
+            
+            let _ = try await api.setCustomStatus(postData: postData)
+            
+            return true
+            
+        } catch {
+            print("input status invaild")
+            return false
+        }
+    }
 }
 
 struct MyUser {
@@ -91,7 +113,7 @@ struct UserStatus: Codable {
     var delete: Bool = false
 }
 
-struct CustomStatus: Codable {
+struct CustomStatus: Codable, Hashable {
     var id: String = ""
     var manager: String = ""
     var shipper: String = ""

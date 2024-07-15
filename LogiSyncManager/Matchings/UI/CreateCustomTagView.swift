@@ -9,9 +9,13 @@ import SwiftUI
 
 struct CreateCustomTagView: View {
     
+    @EnvironmentObject var environVM: EnvironViewModel
+    
     @Environment(\.colorScheme) var colorScheme
     @State var isOpend: Bool = false
     @State var rotate: Double = 0.0
+    
+    @State var reView: Bool = false
     
     @State var key: String = "新規でステータスを作成"
     
@@ -20,6 +24,9 @@ struct CreateCustomTagView: View {
     @State var statusName: String = ""
     
     @State var previewIconName: [String] = []
+    
+    @State var shipperId: String
+    @State var status: [CustomStatus]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
@@ -83,6 +90,15 @@ struct CreateCustomTagView: View {
                                 Spacer()
                                 Button("作成") {
                                     // 作成処理
+                                    Task {
+                                        do {
+                                            try await environVM.setCustomStatus(icon: icon,shipper: shipperId, color: colorSelector, name: statusName, index: status.count + 1)
+                                        } catch {
+                                            print("API ERR: カスタムステータスの送信")
+                                        }
+                                    }
+                                    
+                                    
                                 }.buttonStyle(BorderedProminentButtonStyle()).disabled(icon.isEmpty || statusName.isEmpty)
                                 Spacer()
                             }.padding()
@@ -95,6 +111,6 @@ struct CreateCustomTagView: View {
     
 }
 
-#Preview {
-    CreateCustomTagView()
-}
+//#Preview {
+//    CreateCustomTagView()
+//}
