@@ -40,16 +40,16 @@ struct Card: View {
     }
     
     func transferDateString(dateString: String) -> String {
-
+        
         // DateFormatterを使用してISO 8601形式の文字列をDate型に変換
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withInternetDateTime]
-
+        
         if let date = formatter.date(from: dateString) {
             // 出力のカスタム形式のDateFormatterを作成
             let customFormatter = DateFormatter()
             customFormatter.dateFormat = "yy-MM-dd HH:mm"
-
+            
             // Date型をカスタム形式の文字列に変換
             let formattedDateString = customFormatter.string(from: date)
             return formattedDateString // 出力: "24-06-27 17:30"

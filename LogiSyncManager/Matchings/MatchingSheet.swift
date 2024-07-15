@@ -24,28 +24,28 @@ struct MatchingSheet: View {
     var body: some View {
         ZStack {
             VStack(alignment: .leading){
-                    HStack{
-                        Group{
-                            UserThumbnalil(role: matching.user.shipper.role, width: width)
-                            Spacer().frame(width: 30)
-                            VStack(alignment: .leading){
-                                Text(matching.user.shipper.name)
-                                Text(matching.user.shipper.company)
-                                Text("納期：\(transferDateString(dateString: matching.matching.start))")
-                            }
+                HStack{
+                    Group{
+                        UserThumbnalil(role: matching.user.shipper.role, width: width)
+                        Spacer().frame(width: 30)
+                        VStack(alignment: .leading){
+                            Text(matching.user.shipper.name)
+                            Text(matching.user.shipper.company)
+                            Text("納期：\(transferDateString(dateString: matching.matching.start))")
                         }
-                        Divider()
-                        Group{
-                            UserThumbnalil(role: matching.user.driver.role, width: width)
-                            Spacer().frame(width: 30)
-                            VStack(alignment: .leading){
-                                Text(matching.user.driver.name)
-                                Text(matching.user.driver.company)
-                            }
+                    }
+                    Divider()
+                    Group{
+                        UserThumbnalil(role: matching.user.driver.role, width: width)
+                        Spacer().frame(width: 30)
+                        VStack(alignment: .leading){
+                            Text(matching.user.driver.name)
+                            Text(matching.user.driver.company)
                         }
-                    }.padding().frame(height: 200)
-                    Divider().padding(.horizontal)
-                    
+                    }
+                }.padding().frame(height: 200)
+                Divider().padding(.horizontal)
+                
                 CreateCustomTagView(shipperId: matching.user.shipper.userId, status: matching.status).padding()
                 
                 Text("ステータス一覧").padding(.horizontal)
@@ -54,8 +54,6 @@ struct MatchingSheet: View {
                 List {
                     StatusLabel(width: 30, symbole: "checkmark.circle.fill", color: "green", label: "オンライン")
                     StatusLabel(width: 30, symbole: "xmark.circle", color: "gray", label: "オフライン")
-                    //                    StatusLabel(width: 30, symbole: "house.circle", color: "yellow", label: "待機中")
-                    //                    StatusLabel(width: 30, symbole: "car.circle", color: "red", label: "運転中")
                     ForEach(environVM.model.matchings[matching.index].status, id: \.self) { data in
                         StatusLabel(width: 30, symbole: data.icon, color: data.color, label: data.name)
                     }
@@ -90,16 +88,16 @@ struct MatchingSheet: View {
     }
     
     func transferDateString(dateString: String) -> String {
-
+        
         // DateFormatterを使用してISO 8601形式の文字列をDate型に変換
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withInternetDateTime]
-
+        
         if let date = formatter.date(from: dateString) {
             // 出力のカスタム形式のDateFormatterを作成
             let customFormatter = DateFormatter()
             customFormatter.dateFormat = "yy-MM-dd HH:mm"
-
+            
             // Date型をカスタム形式の文字列に変換
             let formattedDateString = customFormatter.string(from: date)
             return formattedDateString // 出力: "24-06-27 17:30"
