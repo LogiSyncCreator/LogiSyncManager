@@ -84,6 +84,22 @@ struct EnvironModel {
             return false
         }
     }
+    
+    func deleteMatching(matchingId: String) async throws {
+        do {
+            try await api.deleteMatching(param: matchingId)
+        } catch {
+            print("APIERR: マッチングの削除に失敗")
+        }
+    }
+    
+    func deleteCustomStatus(statusId: String) async throws {
+        do {
+            try await api.deleteCustomStatus(param: statusId)
+        } catch {
+            print("APIERR: ステータスの削除に失敗")
+        }
+    }
 }
 
 struct MyUser {

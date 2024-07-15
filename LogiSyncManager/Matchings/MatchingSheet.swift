@@ -55,8 +55,20 @@ struct MatchingSheet: View {
                     StatusLabel(width: 30, symbole: "checkmark.circle.fill", color: "green", label: "オンライン")
                     StatusLabel(width: 30, symbole: "xmark.circle", color: "gray", label: "オフライン")
                     ForEach(environVM.model.matchings[matching.index].status, id: \.self) { data in
-                        StatusLabel(width: 30, symbole: data.icon, color: data.color, label: data.name)
-                    }
+                        if !data.delete {
+                            StatusLabel(width: 30, symbole: data.icon, color: data.color, label: data.name)
+                        }
+                    }.onDelete(perform: { indexSet in
+                            indexSet.forEach { index in
+                                let statusId = environVM.model.matchings[matching.index].status[index].id
+                                Task{
+                                    try await environVM.deleteStatus(uuid: statusId)
+                                    await MainActor.run {
+                                        environVM.model.matchings[matching.index].status[index].delete = true
+                                    }
+                                }
+                            }
+                    })
                 }
                 
                 Spacer()
@@ -74,9 +86,14 @@ struct MatchingSheet: View {
             }.padding()
         }.alert("警告", isPresented: $isDeleteAlert) {
             Button("OK", role: .destructive) {
-                // 削除処理
-                withAnimation {
-                    isDelete.toggle()
+                Task{
+                    // 削除処理
+                    try await environVM.deleteMatching(uuid: environVM.model.matchings[matching.index].matching.id)
+                    await MainActor.run {
+                        withAnimation {
+                            isDelete.toggle()
+                        }
+                    }
                 }
             }
             Button("Cancel", role: .cancel) {

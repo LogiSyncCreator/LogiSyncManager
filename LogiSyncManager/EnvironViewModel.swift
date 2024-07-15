@@ -147,4 +147,15 @@ class EnvironViewModel: ObservableObject {
             setCustomStatus.send((icon: icon, shipper: shipper, color: color, name: name, index: index))
         }
     }
+    
+    func deleteMatching(uuid: String) async throws {
+        try await self.model.deleteMatching(matchingId: uuid)
+        await MainActor.run {
+            self.receivedMatching.send()
+        }
+    }
+    
+    func deleteStatus(uuid: String) async throws {
+        try await self.model.deleteCustomStatus(statusId: uuid)
+    }
 }
