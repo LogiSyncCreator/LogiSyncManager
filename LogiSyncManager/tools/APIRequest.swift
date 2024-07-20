@@ -27,6 +27,26 @@ final class APIRequest {
         return try await APIRequest(postData: postData, endPoint: "matching")
     }
     
+    func getMatchingGroup(postData: [String: Any]) async throws -> Data {
+        return try await APIRequest(postData: postData, endPoint: "matching/managedgroup")
+    }
+    
+    func deleteMatching(param: String) async throws {
+        return try await APIRequest(param: param, endPoint: "matching/cancel")
+    }
+    
+    func setCustomStatus(postData: [String: Any]) async throws -> Data {
+        return try await APIRequest(postData: postData, endPoint: "status")
+    }
+    
+    func deleteCustomStatus(param: String) async throws {
+        return try await APIRequest(param: param, endPoint: "status", method: "DELETE")
+    }
+    
+    func sendStatusNotification(shipper: String, manager: String) async throws {
+        return try await APIRequest(param: "\(shipper)/\(manager)", endPoint: "push/updatestatus")
+    }
+    
     /// Description
     /// - Parameters:
     ///   - param: http://******/{param}

@@ -10,7 +10,7 @@ import Foundation
 struct EnvironModel {
     
     var account: MyUser = MyUser()
-    var matchings: [MyMatching] = []
+    var matchings: [ManagedMatching] = []
     
     let api = APIRequest()
     
@@ -41,12 +41,72 @@ struct EnvironModel {
         }
     }
     
-    func insertMatchings(postData: SendMatchingInformation) async throws {
+    func insertMatchings(postData: SendMatchingInformation) async throws -> Bool {
         do {
-            
             try await api.setMatchings(postData: postData)
+            return true
         } catch {
             print("post data is invalid.")
+            return false
+        }
+    }
+    
+    func retriveMatchngGroup() async throws -> [ManagedMatching] {
+        do {
+            let postData: [String: Any] = ["manager": self.account.user.userId]
+            
+            let matchingData = try await api.getMatchingGroup(postData: postData)
+            let matchings = try JSONDecoder().decode([ManagedMatching].self, from: matchingData)
+            return matchings
+        } catch {
+            print("Not Found matching list.")
+            return []
+        }
+    }
+    
+    func insertCustomStatus(icon: String, shipper: String, color: String, name: String, index: Int) async throws -> Bool {
+        do {
+            let postData: [String: Any] = [
+                "icon": icon,
+                "shipper": shipper,
+                "manager": self.account.user.userId,
+                "color": color,
+                "delete": false,
+                "name": name,
+                "index": index,
+            ]
+            
+            let _ = try await api.setCustomStatus(postData: postData)
+            
+            return true
+            
+        } catch {
+            print("input status invaild")
+            return false
+        }
+    }
+    
+    func deleteMatching(matchingId: String) async throws {
+        do {
+            try await api.deleteMatching(param: matchingId)
+        } catch {
+            print("APIERR: マッチングの削除に失敗")
+        }
+    }
+    
+    func deleteCustomStatus(statusId: String) async throws {
+        do {
+            try await api.deleteCustomStatus(param: statusId)
+        } catch {
+            print("APIERR: ステータスの削除に失敗")
+        }
+    }
+    
+    func sendCreateStatusNotification(shipper: String, manager: String) async throws {
+        do {
+            try await api.sendStatusNotification(shipper: shipper, manager: manager)
+        } catch {
+            print("APIERR: ステータス更新通知の送信に失敗")
         }
     }
 }
@@ -64,9 +124,11 @@ struct UserInformation: Codable {
     var company: String = ""
     var role: String = ""
     var phone: String = ""
+    var delete: Bool = false
 }
 
 struct UserStatus: Codable {
+    var index: Int = 0
     var id: String = ""
     var userId: String = ""
     var statusId: String = ""
@@ -74,6 +136,17 @@ struct UserStatus: Codable {
     var color: String = ""
     var icon: String = ""
     var delete: Bool = false
+}
+
+struct CustomStatus: Codable, Hashable {
+    var id: String = ""
+    var manager: String = ""
+    var shipper: String = ""
+    var name: String = ""
+    var delete: Bool = false
+    var color: String = ""
+    var icon: String = ""
+    var index: Int = 0
 }
 
 struct MyMatching: Codable {
@@ -89,6 +162,7 @@ struct MatchingInformation: Codable {
     var driver: String = ""
     var address: String = ""
     var start: String = ""
+    var delete: Bool = false
 }
 
 struct SendMatchingInformation: Codable {
@@ -104,4 +178,22 @@ struct MatchingUser: Codable {
     var manager: UserInformation
     var shipper: UserInformation
     var driver: UserInformation
+}
+
+struct ManagedMatching:Hashable, Codable {
+    
+    // Hashableプロトコルに準拠するために必要な関数
+    static func == (lhs: ManagedMatching, rhs: ManagedMatching) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    var id: String = ""
+    var index: Int = 0
+    var matching: MatchingInformation = MatchingInformation()
+    var user: MatchingUser = MatchingUser(manager: UserInformation(), shipper: UserInformation(), driver: UserInformation())
+    var status: [CustomStatus] = []
 }

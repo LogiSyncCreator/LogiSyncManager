@@ -41,8 +41,8 @@ struct SideBarView: View {
                                 Divider()
                                 NavigationButton(iconName: "person.2", title: "regist", pageIndex: 2, index: $index).padding()
                                 Divider()
-                                NavigationButton(iconName: "gearshape.fill", title: "settings", pageIndex: 3, index: $index).padding()
-                                Divider()
+//                                NavigationButton(iconName: "gearshape.fill", title: "settings", pageIndex: 3, index: $index).padding()
+//                                Divider()
                                 NavigationButton(iconName: "door.right.hand.open", title: "logout", pageIndex: 4, index: $index).padding()
                                 Divider()
                             }

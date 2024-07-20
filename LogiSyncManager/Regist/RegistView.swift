@@ -41,8 +41,10 @@ struct RegistView: View {
                 .datePickerStyle(.compact).frame(width: 200)
                 Divider()
                 
-                if isErr {
-                    Text(errText)
+                if environVM.matchingsErr {
+                    Text(errText).foregroundStyle(.red).onDisappear(){
+                        environVM.matchingsErr = false
+                    }
                 }
                 
                 HStack{
@@ -59,6 +61,7 @@ struct RegistView: View {
                     .alert("完了", isPresented: $environVM.matchingsAlert) {
                         Button("OK") {
                             // 処理
+                            isAlert = false
                         }
                     } message: {
                         Text("マッチングの作成が完了しました")
