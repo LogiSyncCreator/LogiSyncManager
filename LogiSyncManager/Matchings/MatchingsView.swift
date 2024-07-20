@@ -42,6 +42,9 @@ struct MatchingsView: View {
                     }
                 }.scrollTargetLayout()
             }.scrollTargetBehavior(.paging)
+                .onAppear(){
+                    environVM.receivedMatching.send()
+                }
         }
     }
 }

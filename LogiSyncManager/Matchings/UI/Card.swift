@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Card: View {
-    
+    @EnvironmentObject var environVM: EnvironViewModel
     @State var matching: ManagedMatching
     
     @State var isOpenSheet: Bool = false
@@ -16,6 +16,8 @@ struct Card: View {
     
     @State var width: CGFloat
     @State var geo: GeometryProxy
+    
+    @State var isReview: Bool = false
     
     var body: some View {
         if !isDelete {
@@ -34,7 +36,9 @@ struct Card: View {
                 .onTapGesture {
                     isOpenSheet.toggle()
                 }.sheet(isPresented: $isOpenSheet, content: {
-                    MatchingSheet(matching: matching, isDelete: $isDelete)
+                    MatchingSheet(matching: matching, isDelete: $isDelete).onDisappear(){
+                        self.environVM.receivedMatching.send()
+                    }
                 })
         }
     }

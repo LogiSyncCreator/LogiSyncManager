@@ -43,6 +43,10 @@ final class APIRequest {
         return try await APIRequest(param: param, endPoint: "status", method: "DELETE")
     }
     
+    func sendStatusNotification(shipper: String, manager: String) async throws {
+        return try await APIRequest(param: "\(shipper)/\(manager)", endPoint: "push/updatestatus")
+    }
+    
     /// Description
     /// - Parameters:
     ///   - param: http://******/{param}

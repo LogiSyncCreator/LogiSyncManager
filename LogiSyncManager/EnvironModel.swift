@@ -41,12 +41,13 @@ struct EnvironModel {
         }
     }
     
-    func insertMatchings(postData: SendMatchingInformation) async throws {
+    func insertMatchings(postData: SendMatchingInformation) async throws -> Bool {
         do {
-            
             try await api.setMatchings(postData: postData)
+            return true
         } catch {
             print("post data is invalid.")
+            return false
         }
     }
     
@@ -98,6 +99,14 @@ struct EnvironModel {
             try await api.deleteCustomStatus(param: statusId)
         } catch {
             print("APIERR: ステータスの削除に失敗")
+        }
+    }
+    
+    func sendCreateStatusNotification(shipper: String, manager: String) async throws {
+        do {
+            try await api.sendStatusNotification(shipper: shipper, manager: manager)
+        } catch {
+            print("APIERR: ステータス更新通知の送信に失敗")
         }
     }
 }

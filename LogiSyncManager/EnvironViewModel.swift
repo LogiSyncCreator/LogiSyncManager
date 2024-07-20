@@ -14,6 +14,7 @@ class EnvironViewModel: ObservableObject {
     
     @Published var reView: Bool = false
     @Published var matchingsAlert: Bool = false
+    @Published var matchingsErr: Bool = false
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -81,9 +82,12 @@ class EnvironViewModel: ObservableObject {
             self.isInsertMatchings = true
             
             Task {
-                try await self.model.insertMatchings(postData: sendMatchingInformation)
+                let setRes = try await self.model.insertMatchings(postData: sendMatchingInformation)
                 
                 await MainActor.run {
+                    if !setRes {
+                        self.matchingsErr = true
+                    }
                     self.isInsertMatchings = false
                     self.matchingsAlert = true
                     self.reView.toggle()
@@ -151,11 +155,15 @@ class EnvironViewModel: ObservableObject {
     func deleteMatching(uuid: String) async throws {
         try await self.model.deleteMatching(matchingId: uuid)
         await MainActor.run {
-            self.receivedMatching.send()
+//            self.receivedMatching.send()
         }
     }
     
     func deleteStatus(uuid: String) async throws {
         try await self.model.deleteCustomStatus(statusId: uuid)
+    }
+    
+    func sendCreateStatusNotification(shipper: String) async throws {
+        try await self.model.sendCreateStatusNotification(shipper: shipper, manager: self.model.account.user.userId)
     }
 }

@@ -41,8 +41,10 @@ struct RegistView: View {
                 .datePickerStyle(.compact).frame(width: 200)
                 Divider()
                 
-                if isErr {
-                    Text(errText)
+                if environVM.matchingsErr {
+                    Text(errText).foregroundStyle(.red).onDisappear(){
+                        environVM.matchingsErr = false
+                    }
                 }
                 
                 HStack{

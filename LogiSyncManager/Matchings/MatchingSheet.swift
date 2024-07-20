@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+extension Array {
+    subscript (element index: Index) -> Element? {
+        //　MARK: 配列の要素以上を指定していたらnilを返すようにする
+        indices.contains(index) ? self[index] : nil
+    }
+}
+
 struct MatchingSheet: View {
     @EnvironmentObject var environVM: EnvironViewModel
     @Environment(\.colorScheme) var colorScheme
@@ -48,7 +55,15 @@ struct MatchingSheet: View {
                 
                 CreateCustomTagView(shipperId: matching.user.shipper.userId, status: matching.status).padding()
                 
-                Text("ステータス一覧").padding(.horizontal)
+                HStack {
+                    Text("ステータス一覧")
+                    Spacer()
+                    Button("対応ユーザのステータスの更新"){
+                        Task{
+                            try await environVM.sendCreateStatusNotification(shipper: matching.user.shipper.userId)
+                        }
+                    }
+                }.padding(.horizontal)
                 
                 
                 List {
@@ -59,15 +74,27 @@ struct MatchingSheet: View {
                             StatusLabel(width: 30, symbole: data.icon, color: data.color, label: data.name)
                         }
                     }.onDelete(perform: { indexSet in
-                            indexSet.forEach { index in
-                                let statusId = environVM.model.matchings[matching.index].status[index].id
-                                Task{
-                                    try await environVM.deleteStatus(uuid: statusId)
-                                    await MainActor.run {
+                        
+                        indexSet.forEach { index in
+                            
+                            guard environVM.model.matchings.indices.contains(matching.index),
+                                  environVM.model.matchings[matching.index].status.indices.contains(index) else {
+                                // インデックスが無効の場合はスキップ
+                                return
+                            }
+                            
+                            let statusId = environVM.model.matchings[matching.index].status[index].id
+                            Task{
+                                try await environVM.deleteStatus(uuid: statusId)
+                                
+                                await MainActor.run{
+                                    if environVM.model.matchings.indices.contains(matching.index),
+                                       environVM.model.matchings[matching.index].status.indices.contains(index) {
                                         environVM.model.matchings[matching.index].status[index].delete = true
                                     }
                                 }
                             }
+                        }
                     })
                 }
                 
